@@ -1,0 +1,116 @@
+:root {
+  --ink: #20353b;
+  --muted: #66777a;
+  --paper: #f7f2e9;
+  --cream: #fffdf8;
+  --teal: #196f73;
+  --teal-dark: #12575d;
+  --coral: #e8755e;
+  --gold: #eebc56;
+  --line: #dce3dc;
+  --shadow: 0 16px 36px rgba(46, 67, 65, .13);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  color: var(--ink);
+  background: var(--paper);
+  font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  touch-action: manipulation;
+}
+button { font: inherit; }
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(18px, 3vw, 44px);
+  background: radial-gradient(circle at 8% 10%, rgba(238, 188, 86, .24), transparent 28%),
+    radial-gradient(circle at 92% 92%, rgba(25, 111, 115, .14), transparent 34%), var(--paper);
+}
+.screen { width: min(1180px, 100%); min-height: min(720px, 90vh); display: flex; flex-direction: column; }
+.center-screen { justify-content: center; align-items: center; text-align: center; }
+.eyebrow { color: var(--teal); font-size: clamp(14px, 1.5vw, 20px); font-weight: 800; letter-spacing: .12em; }
+h1, h2, p { margin: 0; }
+h1 { font-size: clamp(42px, 7vw, 92px); line-height: 1.12; letter-spacing: -.06em; }
+h2 { font-size: clamp(28px, 4vw, 52px); letter-spacing: -.04em; }
+.lead { margin-top: 16px; color: var(--muted); font-size: clamp(18px, 2vw, 26px); }
+.hero-mark { width: 100px; height: 100px; display: grid; place-items: center; margin-bottom: 24px; border-radius: 32px; color: var(--cream); background: var(--teal); box-shadow: 10px 12px 0 var(--gold); font-size: 48px; transform: rotate(-5deg); }
+.primary-button, .menu-button, .ghost-button, .next-button {
+  border: 0; border-radius: 20px; cursor: pointer; transition: transform .14s ease, box-shadow .14s ease, background .14s ease;
+  touch-action: manipulation;
+}
+button:active { transform: translateY(4px) scale(.98); }
+button:focus-visible { outline: 4px solid rgba(238, 188, 86, .8); outline-offset: 4px; }
+.primary-button { min-width: 260px; margin-top: 42px; padding: 22px 48px; color: white; background: var(--coral); box-shadow: 0 8px 0 #bc5948; font-size: 30px; font-weight: 900; letter-spacing: .08em; }
+.primary-button:hover { background: #d96550; transform: translateY(-3px); }
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 26px; }
+.title-block { text-align: center; flex: 1; }
+.title-block h2 { margin-top: 8px; }
+.home-button, .back-button { min-width: 104px; min-height: 58px; border: 2px solid var(--line); border-radius: 16px; color: var(--ink); background: rgba(255,255,255,.7); font-size: 18px; font-weight: 800; cursor: pointer; }
+.home-button:hover, .back-button:hover, .ghost-button:hover { background: white; transform: translateY(-2px); }
+.menu-list { display: grid; gap: 16px; width: min(720px, 100%); margin: 36px auto 0; }
+.menu-button { width: 100%; padding: 22px 30px; color: var(--ink); background: var(--cream); box-shadow: var(--shadow); font-size: clamp(22px, 2.5vw, 32px); font-weight: 800; text-align: left; }
+.menu-button:hover { color: white; background: var(--teal); transform: translateX(5px); }
+.menu-number { display: inline-grid; place-items: center; width: 42px; height: 42px; margin-right: 18px; border-radius: 50%; color: white; background: var(--coral); font-size: 20px; }
+.game-board { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.game-hint { margin: 0 0 18px; color: var(--muted); text-align: center; font-size: clamp(17px, 2vw, 24px); }
+.match-layout { display: grid; grid-template-columns: 1.35fr 1fr; gap: 22px; min-height: 0; flex: 1; }
+.panel { padding: 20px; border: 1px solid rgba(220, 227, 220, .9); border-radius: 24px; background: rgba(255, 253, 248, .84); box-shadow: var(--shadow); }
+.panel-title { margin-bottom: 14px; color: var(--teal); font-weight: 900; }
+.artifact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+.artifact-card { position: relative; overflow: hidden; min-height: 185px; border: 3px dashed #b7cac3; border-radius: 18px; background: #edf2ec; }
+.artifact-card img, .real-item img { display: block; width: 100%; height: 130px; object-fit: cover; }
+.artifact-label { display: flex; align-items: center; justify-content: center; min-height: 50px; padding: 8px; color: var(--muted); background: var(--cream); font-size: 18px; font-weight: 800; }
+.artifact-card.matched { border-style: solid; border-color: var(--teal); animation: pop .5s ease; }
+.name-list { display: grid; align-content: start; gap: 14px; }
+.name-card { min-height: 68px; padding: 18px; border: 0; border-radius: 16px; color: white; background: var(--teal); box-shadow: 0 6px 0 var(--teal-dark); font-size: 20px; font-weight: 800; cursor: grab; touch-action: none; }
+.name-card:active { cursor: grabbing; }
+.name-card.dragging { opacity: .35; }
+.name-card.placed { display: none; }
+.feedback { min-height: 32px; margin-top: 14px; color: var(--coral); font-size: 19px; font-weight: 900; text-align: center; }
+.feedback.success { color: var(--teal); }
+.finish-panel { align-items: center; justify-content: center; text-align: center; }
+.finish-panel h2 { color: var(--teal); }
+.finish-panel .finish-icon { margin-bottom: 18px; font-size: 64px; }
+.action-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 26px; }
+.ghost-button, .next-button { min-height: 58px; padding: 14px 25px; font-weight: 900; font-size: 18px; }
+.ghost-button { border: 2px solid var(--teal); color: var(--teal); background: transparent; }
+.next-button { color: white; background: var(--coral); box-shadow: 0 5px 0 #bc5948; }
+.next-button:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
+.puzzle-layout { display: grid; grid-template-columns: minmax(300px, 540px) 1fr; gap: 28px; align-items: center; justify-content: center; flex: 1; }
+.puzzle-grid { display: grid; grid-template-columns: repeat(3, 1fr); width: min(72vw, 540px); aspect-ratio: 1; overflow: hidden; border: 10px solid var(--cream); border-radius: 24px; box-shadow: var(--shadow); background: var(--teal); }
+.puzzle-piece { min-width: 0; border: 1px solid rgba(255,255,255,.6); background-image: var(--puzzle-image); background-size: 300% 300%; cursor: grab; touch-action: none; }
+.puzzle-piece.dragging { opacity: .35; }
+.puzzle-piece.correct { outline: 4px solid var(--gold); outline-offset: -4px; }
+.puzzle-side { text-align: center; }
+.puzzle-side p { color: var(--muted); font-size: 20px; line-height: 1.6; }
+.real-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 940px; width: 100%; margin: 12px auto 0; }
+.real-item { overflow: hidden; border: 4px solid transparent; border-radius: 20px; background: var(--cream); box-shadow: var(--shadow); cursor: pointer; transition: transform .14s ease, border .14s ease; }
+.real-item:hover { transform: translateY(-5px); }
+.real-item.selected { border-color: var(--gold); }
+.real-item.correct { border-color: var(--teal); animation: pop .5s ease; }
+.real-item.wrong { border-color: var(--coral); animation: shake .35s ease; }
+.real-item img { height: 190px; }
+.real-item span { display: block; padding: 14px; font-size: 20px; font-weight: 900; }
+.question-count { display: inline-block; margin: 4px auto 15px; padding: 8px 18px; border-radius: 999px; color: var(--teal-dark); background: #dcece2; font-weight: 900; }
+.score-text { margin-top: 12px; color: var(--muted); font-size: 22px; }
+@keyframes pop { 0% { transform: scale(.96); } 60% { transform: scale(1.04); } 100% { transform: scale(1); } }
+@keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+@media (max-width: 760px) {
+  .app-shell { padding: 14px; }
+  .screen { min-height: 94vh; }
+  .topbar { margin-bottom: 16px; }
+  .home-button, .back-button { min-width: 74px; min-height: 48px; font-size: 15px; }
+  .match-layout, .puzzle-layout { grid-template-columns: 1fr; gap: 14px; }
+  .panel { padding: 14px; }
+  .artifact-card { min-height: 145px; }
+  .artifact-card img { height: 95px; }
+  .puzzle-grid { width: min(78vw, 430px); margin: auto; }
+  .puzzle-side p { font-size: 17px; }
+  .real-grid { gap: 10px; }
+  .real-item img { height: 125px; }
+  .real-item span { padding: 9px 4px; font-size: 15px; }
+}
